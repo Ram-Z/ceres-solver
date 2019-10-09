@@ -260,8 +260,8 @@ if (BUILD_SHARED_LIBS)
   # When building a shared library, mark all external libraries as
   # PRIVATE so they don't show up as a dependency.
   target_link_libraries(ceres
-        LINK_PUBLIC ${CERES_LIBRARY_PUBLIC_DEPENDENCIES}
-        LINK_PRIVATE ${CERES_LIBRARY_PRIVATE_DEPENDENCIES})
+        PUBLIC ${CERES_LIBRARY_PUBLIC_DEPENDENCIES}
+        PRIVATE ${CERES_LIBRARY_PRIVATE_DEPENDENCIES})
 else (BUILD_SHARED_LIBS)
   # When building a static library, all external libraries are
   # PUBLIC(default) since the user needs to link to them.
@@ -269,7 +269,7 @@ else (BUILD_SHARED_LIBS)
   set(CERES_LIBRARY_DEPENDENCIES
         ${CERES_LIBRARY_PUBLIC_DEPENDENCIES}
         ${CERES_LIBRARY_PRIVATE_DEPENDENCIES})
-  target_link_libraries(ceres ${CERES_LIBRARY_DEPENDENCIES})
+  target_link_libraries(ceres PUBLIC ${CERES_LIBRARY_DEPENDENCIES})
 endif (BUILD_SHARED_LIBS)
 
 # Add the Ceres headers to its target.
