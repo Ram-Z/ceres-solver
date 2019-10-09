@@ -228,6 +228,11 @@ if (NOT EIGEN_FOUND)
   endif (NOT EIGEN_INCLUDE_DIR OR
     NOT EXISTS ${EIGEN_INCLUDE_DIR})
 
+  add_library(eigen IMPORTED GLOBAL)
+  target_include_directories(eigen INTERFACE
+    $<BUILD_INTERFACE:${EIGEN_INCLUDE_DIR}>
+  )
+
   # Mark internally as found, then verify. EIGEN_REPORT_NOT_FOUND() unsets
   # if called.
   set(EIGEN_FOUND TRUE)

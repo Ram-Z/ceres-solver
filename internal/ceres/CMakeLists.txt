@@ -289,9 +289,9 @@ target_include_directories(ceres PUBLIC
 # Eigen SparseQR generates various compiler warnings related to unused and
 # uninitialised local variables.  To avoid having to individually suppress these
 # warnings around the #include statments for Eigen headers across all GCC/Clang
-# versions, we tell CMake to treat Eigen headers as system headers.  This
+# versions, we link against the IMPORTED target provided upstream.  This
 # results in all compiler warnings from them being suppressed.
-target_include_directories(ceres SYSTEM PUBLIC ${EIGEN_INCLUDE_DIRS})
+target_link_libraries(ceres INTERFACE Eigen3::Eigen)
 
 # Gather the list of public & private include locations for all enabled optional
 # dependencies to be added to the Ceres target.
